@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Reset Password</title>
+</head>
+<body>
+<h2>Reset Your Password</h2>
+
+<!-- Form for Reset Password -->
+<form id="resetPasswordForm" action="http://35.154.136.249:8000/auth/reset-password" method="POST">
+    <!-- Hidden Field to Store Token -->
+    <input type="hidden" id="token" name="token" value="">
+
+    <!-- Field for New Password -->
+    <label for="password">New Password:</label>
+    <input type="password" id="password" name="password" required><br><br>
+
+    <!-- Field for Confirming New Password -->
+    <label for="confirmPassword">Confirm Password:</label>
+    <input type="password" id="confirmPassword" required><br><br>
+
+    <!-- Submit Button -->
+    <button type="submit">Reset Password</button>
+</form>
+
+<script>
+// Function to get URL parameters
+function getQueryParam(param) {
+    var searchParams = new URLSearchParams(window.location.search);
+    return searchParams.get(param);
+}
+
+// Set the token value from URL parameter to the hidden field
+document.getElementById('token').value = getQueryParam('token');
+
+// Add event listener to validate password match before submitting
+document.getElementById('resetPasswordForm').addEventListener('submit', function(event) {
+    var password = document.getElementById('password').value;
+    var confirmPassword = document.getElementById('confirmPassword').value;
+    
+    if (password !== confirmPassword) {
+        alert('Passwords do not match!');
+        event.preventDefault(); // Prevent form from submitting
+    }
+});
+</script>
+
+</body>
+</html>
