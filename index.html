@@ -25,26 +25,29 @@
 </form>
 
 <script>
-// Function to get URL parameters
-function getQueryParam(param) {
-    var searchParams = new URLSearchParams(window.location.search);
-    return searchParams.get(param);
-}
-
-// Set the token value from URL parameter to the hidden field
-document.getElementById('token').value = getQueryParam('token');
-
-// Add event listener to validate password match before submitting
-document.getElementById('resetPasswordForm').addEventListener('submit', function(event) {
-    var password = document.getElementById('password').value;
-    var confirmPassword = document.getElementById('confirmPassword').value;
+    document.addEventListener("DOMContentLoaded", function() {
+        // Function to get URL parameters
+        function getQueryParam(param) {
+            var searchParams = new URLSearchParams(window.location.search);
+            return searchParams.get(param);
+        }
     
-    if (password !== confirmPassword) {
-        alert('Passwords do not match!');
-        event.preventDefault(); // Prevent form from submitting
-    }
-});
-</script>
+        // Set the token value from URL parameter to the hidden field
+        document.getElementById('token').value = getQueryParam('token');
+    
+        // Add event listener to validate password match before submitting
+        document.getElementById('resetPasswordForm').addEventListener('submit', function(event) {
+            var password = document.getElementById('password').value;
+            var confirmPassword = document.getElementById('confirmPassword').value;
+            
+            if (password !== confirmPassword) {
+                alert('Passwords do not match!');
+                event.preventDefault(); // Prevent form from submitting
+            }
+        });
+    });
+    </script>
+    
 
 </body>
 </html>
